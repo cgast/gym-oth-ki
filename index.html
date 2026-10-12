@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/beige.css" id="theme" />
+    <link rel="stylesheet" href="" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# KI im Berufsalltag
+### Was sich gerade verändert...
+### ...und was das für euch bedeutet
+</div>
+
+<aside class="notes"><p>Was wir nicht machen: die neusten KI Modelle besprechen, die neusten Agenten bestaunen oder über den Weltuntergang oder die Erlösung durch KI sprechen</p>
+<p>Was wir hier machen: versuchen einen Einblick in das zu bekommen was wirklich passiert und mit welchem Blick ihr auf die kommenden Veränderungen schauen solltet.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+</div>
+
+<aside class="notes"><p>Können wir MEnti nutzen?</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Woran denkt Ihr bei "KI und Arbeit"?
+
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div>
+
+<aside class="notes"><p>2–3 Begriffe aus der Wolke aufgreifen. Typisch: „ChatGPT“, „Jobs weg“, „Hausaufgaben“, „Angst“, „Zukunft“.
+Brücke: „Einiges davon stimmt, manches ist übertrieben – schauen wir auf die Daten.“</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Wer bin ich?
+
+| Wann       | Was                                                        |
+| ---------- | ---------------------------------------------------------- |
+| 1992       | Abitur in Wedel                                            |
+| 1998       | Diplom Wirtschaftsinformatik, FH Wedel                     |
+| 1995–2002  | Programmierer & Technik-Teamleiter in **Digitalagenturen** |
+| 2004–2010  | Innovationsteam bei **BBDO** (u. a. Sprach-KI-Tools)       |
+| 2016–2021  | Partner & Head of Strategy bei **Jung von Matt**           |
+| 2021–heute | KI-Fokus **Selbstständig**: KI-Tools & Schulungen          |
+| seit 2026  | **LichtBlick**: Team Lead Digital Product                  |
+
+<!-- .element: style="font-size: .7em" -->
+</div>
+
+<aside class="notes"><ul>
+<li>1998 in Digitalagenturen (die ersten) abgerutscht. (ATP Tour Website 97, BMW, Le Mans 98)</li>
+<li>2004 NLP Sprachtools, Vorhersage welche Posts besonders gut funktionieren (Versucht Foren zu anmalysieren und zu manipulieren - u.a. für Pepsi)</li>
+<li>2021 KI-Praktikant, Muster in guten Ideen erkennen, 7 Millionen Bürger simuliert (u.a. Datenwahlkampf für die CDU 2017, Goldener Nagel für begehbare Filterbubble) </li>
+<li>Danach: Selbstständig - Datenanalyse, Programmierung, KI-Anwendungen, Schulungen (für FC St Pauli, Sportfive, Kanzleien)</li>
+</ul>
+<p>KI hat mich schon lange begleitet, aber vor allem ein Basteltrieb und die Fähigkeit zwischen Menschen zu vermitteln (Kreativen und Techniker).</p>
+<p>...eine Sache ist mir in 30 Jahren Berufsleben treu geblieben - ich bin eher Generalist (ich kann alles ein bisschen und nichts richtig) und das ist eine gute Sache.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Wie oft nutzt ihr KI (ChatGPT, Gemini, Claude …)?
+
+## Wird KI euren Wunschberuf verändern?
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div>
+
+<aside class="notes"><p>Ergebnis kommentieren. Vermutlich hohe Nutzung – „Ihr seid die erste Generation, die mit KI in den Beruf startet.“</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Was passiert gerade?
+
+
+Notes:
+
+Wir sehen eine irre Aufregung...
+- Muse, Bots, Agents
+- Hugging Face Überfall, Mord Tips, VISA ANträge
+- Fake NEws, Fake alles
+- Computer Spiele... 
+- Firmen die alles umbauen: Telekom, BMW, etc
+
+...und man ist total verwirrt zwischen - alles wird geil und alles wird schrecklich. 
+Zwischen keiner muss mehr arbeiten, jeder kann man machen was er will 
+und. die Zivilisation wird von KI Agenten ausgelöscht. 
+
+... aber immer mit dabei: Die KI übernimmt Jobs / Arbeitsplätze
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## KI ersetzt Aufgaben, nicht Berufe
+
+Jeder Beruf = Bündel von Aufgaben
+
+| KI übernimmt | KI hilft | bleibt menschlich |
+|---|---|---|
+| Routinetexte, Übersetzung, Standardcode | Recherche, Entwürfe, Analyse | Verantwortung, Beziehungen, Urteil, Handwerk |
+</div>
+
+<aside class="notes"><p>KI frisst keine Arbeitsplätze</p>
+<p>Wo KI Arbeit <em>ersetzt</em>, sinkt Beschäftigung; 
+wo sie Menschen <em>unterstützt</em>, wächst sie.</p>
+<p>Wozu führt das?</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 1
+## Weniger Einstiegsjobs
+
+- 22–25-Jährige in stark KI-betroffenen Berufen: **–19 %** Beschäftigung ggü. weniger betroffenen Berufen
+- Ein Jahr vorher: –13 %
+- Ursache: **weniger Neueinstellungen** – nicht Entlassungen
+- Erfahrene kaum betroffen
+
+
+<small>Stanford Digital Economy Lab, Update Aug. 2026 · US-Lohndaten (ADP)</small>
+</div>
+
+<aside class="notes"><p>Warum gerade Junge? Schul-/Lehrbuchwissen kann KI gut nachbilden, Erfahrungswissen kaum.
+Quellenqualität: hoch (große administrative Datenbasis), aber nur beschreibend, keine Kausalität. NY-Fed-Forscher: Abkühlung nicht allein KI zuzuschreiben. Nur USA.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 2
+## Der Einstieg wird „erwachsener“
+
+KI-exponierte Einstiegsjobs verlangen **7× häufiger** als 2019 Fähigkeiten, die früher Senior-Kräften vorbehalten waren:
+
+- mit Stakeholdern umgehen
+- andere anleiten
+- datenbasiert entscheiden
+
+<small>PwC AI Jobs Barometer 2026</small>
+</div>
+
+<aside class="notes"><p>Folge: Die klassische Lernstufe („erstmal Excel und Protokolle“) fällt weg.
+Frage ans Publikum: „Wo lernt man dann das, was Senior-Leute können?“ → Praktika, Projekte, Ehrenamt.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 3
+## Wo KI schon viel übernimmt
+
+- **Übersetzen & Texten (Freelance):** Nachfrage 20–50 % unter Trend
+- **Kundenservice:** Salesforce 9.000 → 5.000 Support-Stellen
+  …aber Klarna holt wieder Menschen zurück
+- **Programmieren:** ?
+
+<small>Teutloff et al., JEBO 2025 (peer-reviewed) · Salesforce-Selbstauskunft</small>
+</div>
+
+<aside class="notes"><p>Salesforce verkauft selbst KI-Agenten → Interessenkonflikt ansprechen.
+Programmieren bewusst offen lassen → nächste Folie Quiz.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Wie viel Prozent des neuen Codes bei Google schreibt laut Google inzwischen KI?
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div>
+
+<aside class="notes"><p>Auflösung: Google sagt 75 % (April 2026, von Menschen geprüft).
+Unabhängige Messung über 4,2 Mio. Entwickler: 26,9 %.
+→ Lektion: Firmenzahlen sind Spitzenwerte und Marketing. Immer fragen: Wer sagt das, und warum?</p>
+<p>Programmierer ist kein Job Profil mehr!!!!</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 4
+## Rollen verschmelzen
+
+- Design, Produktmanagement, Entwicklung wachsen zusammen
+- Beispiel: Designer:innen bauen funktionierende Prototypen statt nur Entwürfe
+
+Notes:
+
+Was sind "Rollen": Programmierer zerteilt sich in Software Architekten, Frontend Developer, Backend Developer, Product Owner, Product Designer, Quality Assurance Engineer, Platform Engineer...  
+
+Diese Rollen werden wieder weniger:
+**Mein Beispiel:** Als Stratege baue ich die Prototypen heute selbst – früher brauchte ich dafür ein Entwicklerteam. Bei LichtBlick arbeiten Produkt, Design und Entwicklung in **einem** Team.
+
+Botschaft: Wer über den Tellerrand seines Fachs schauen kann, profitiert.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 5
+## „Wegen KI“ entlassen?
+
+- Mai 2026: **40 %** der angekündigten US-Stellenstreichungen mit KI begründet (Rekord)
+- Aber: oft vermischt mit Sparprogrammen und Überbesetzung aus der Corona-Zeit
+
+<small>Challenger, Gray & Christmas</small>
+</div>
+
+<aside class="notes"><p>Stichwort „AI Washing“: KI als bequeme Begründung.
+Amazon selbst nannte Kürzungen im Management „kulturell motiviert“.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Das große Bild
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Bis 2030 – weltweit: Gibt es durch Technologie & Co. mehr oder weniger Jobs?
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Prognosen
+
+| Wer                        | Was                                      | Wie belastbar       |
+| -------------------------- | ---------------------------------------- | ------------------- |
+| WEF (global, bis 2030)     | 170 Mio. neu, 92 Mio. weg → **+78 Mio.** | Arbeitgeber-Umfrage |
+| IAB (Deutschland, 15 J.)   | ~790.000 neu, ~790.000 weg → **≈ 0**     | Modell              |
+| Goldman Sachs (USA, 10 J.) | ~9 % müssen Job wechseln                 | Modell              |
+|                            |                                          |                     |
+<!-- .element: style="font-size: .9em" -->
+
+Notes:
+
+**Gesamtzahl ist die falsche Frage.**
+Entscheidend: *Wo* fallen Jobs weg – und wer kommt an die neuen?
+
+Wachstum: Pflege, Bildung, Handwerk/Bau, KI/Robotik, CleanTech.
+Rückgang: Kasse, Verwaltung, Büro-Einstieg, zunehmend auch kreative Wissensarbeit (Grafik).
+Deutschland-Besonderheit: Erwerbspersonenpotenzial schrumpft (IAB) → Stellenabbau ≠ automatisch Arbeitslosigkeit.
+Ehrlich bleiben: Unsicherheit groß, Risiko eher auf der Abbau-Seite, wenn KI schneller kommt als gedacht. Amodei-Warnung (Hälfte der Büro-Einstiegsjobs in 5 Jahren) = Warnung, keine Prognose.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Arbeitsalltag mit KI
+
+
+Notes: 
+
+**Früher vs. heute**
+
+| Vor KI                                                                    | Mit KI                                                 |
+| ------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Spielbericht schreiben (FC St. Pauli): Redakteur:in schreibt nach Abpfiff | KI erstellt Entwurf aus Liveticker-Daten, Mensch prüft |
+| Texte in Einfache Sprache übersetzen: Fachübersetzer                      | KI übersetzt, Mensch prüft                             |
+| Verkaufspräsentation (Sportfive): Tage im Team                            | KI-Agenten bauen Entwurf in Stunden                    |
+| Prototyp: Strategie → Entwicklerteam → Wochen                             | Ich baue ihn selbst in Tagen                           |
+
+Wichtig: In jeder Zeile prüft am Ende ein Mensch. Das ist der Normalfall, nicht die Ausnahme.
+
+Ideal: Live-Demo eines Tools oder Screenshot (anonymisiert).
+https://assist.fcstpauli.com
+
+Typischer Arbeitstag konkret machen (Briefing-Punkt).
+- Lichtblick
+	- Agenten machen Sachen für die mir die Zeit unde der Überblick fehlt: 
+	- Code der Programmierer prüfen, 
+	- Websites lesen und zusammenfassen
+	- Gespräche aufschreiben und zusammenfassen
+	- Präsentationen vorbereiten
+
+
+Brücke zu Folie „Weniger Einstiegsjobs“: Genau solche Entwurfsaufgaben haben früher Berufseinsteiger:innen gemacht.
+
+Ideal: eine kurze Live-Demo oder ein Screenshot eines echten (anonymisierten) Prompts.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Was KI nicht für mich macht
+
+- Herausfinden, **welches Problem** wir eigentlich lösen
+- Entscheiden und **Verantwortung** übernehmen
+- Team, Kund:innen und Kolleg:innen **mitnehmen**
+- **Regeln** festlegen: Was darf KI bei uns? 
+
+
+Notes:
+
+- Herausfinden, **welches Problem** wir eigentlich lösen
+- Entscheiden und **Verantwortung** übernehmen
+- Team, Kund:innen und Kolleg:innen **mitnehmen**
+- **Regeln** festlegen: Was darf KI bei uns? (z. B. KI-Richtlinien für den FC St. Pauli)
+
+- Regeln (z. B. KI-Richtlinien für den FC St. Pauli)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Was mich überrascht hat
+</div>
+
+<aside class="notes"><ul>
+<li>Gute Prompts schreiben ist vor allem: klar denken und klar erklären können – also eine sehr „schulische“ Fähigkeit.... </li>
+<li>dann merkt man wie wichtig die grundlegenden Fähigkeiten sind, die man in der Schule lernt <ul>
+<li>die richtigen Fragen stellen, wissen was man weiß, wissen was man nicht weiß, abstrahieren können, erklären können, Aufgaben in Teilaufgaben teilen...</li>
+</ul>
+</li>
+<li>es ist immer wieder erschreckend, wenn man der KI vertraut und &quot;enttäuscht&quot; wird... KI liegt oft souverän falsch – man braucht Fachwissen, um es zu merken.<ul>
+<li>Präsentationsfolie falsch</li>
+<li>Programmierfall: KI baut paralle doppelte Strukturen und debugged den falschne strang</li>
+</ul>
+</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Welcher Beruf – und welche Aufgabe bleibt sicher menschlich?
+
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Was heißt das für euch?
+
+
+Notes:
+
+Wenn ihr über JObs nachdenkt...
+
+Zerlegt euren Wunschberuf 
+
+1. 5 typische Aufgaben aufschreiben
+2. Jede Aufgabe einsortieren:
+	🤖 **KI übernimmt** · 🤝 **KI hilft** · 🧑 **bleibt menschlich**
+</div>
+
+<aside class="notes"><p>Zettel oder Handy-Notizen. Rumgehen, nachfragen.
+Kein Wunschberuf? Beruf der Eltern oder dieser hier (meiner).</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Fünf Dinge zum Mitnehmen
+
+1. **KI als Werkzeug, nicht als Ersatz fürs Denken** – wer nur kopiert, lernt genau das, was KI eh kann
+2. **Früh Praxis sammeln** – Praktika, Nebenjobs, Projekte: Erfahrung kann KI nicht nachbilden
+3. **Menschliches stärken** – Empathie, Verantwortung, Urteilskraft, Handwerk
+4. **Lernen hört nicht auf** – 59 von 100 Beschäftigten brauchen bis 2030 Weiterbildung (WEF)
+5. **Kritisch bleiben** – Wer sagt das, mit welchen Daten, mit welchem Interesse?
+</div>
+
+<aside class="notes"><p>Punkt 2 ist die direkte Antwort auf die Einstiegsjob-Daten.
+Punkt 5 verbindet sich mit dem Google-Quiz.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Was wollt ihr noch wissen?
+
+<img src="Pasted image 20261010201732.png" alt="" style="width: 214px; object-fit: fill">
+
+<!-- .element: style="width: 10%" -->
+</div>
+
+<aside class="notes"><p>Restliche ~10 Minuten. Meist-gelikte Fragen zuerst.
+Falls es stockt, Backup-Fragen: „Würden Sie den Beruf heute wieder wählen?“ / „Was sollten wir jetzt lernen?“ / „Wie viel verdient man?“</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Danke!
+
+**Christian Gast** · [cgast.de](https://cgast.de) · [linkedin.com/in/cgast](https://www.linkedin.com/in/cgast/)
+</div>
+
+<aside class="notes"><p>Angebot: Fragen zu Praktika / Berufswahl gern per LinkedIn.</p>
+<p>Quellen auf der nächsten Folie</p>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Quellen
+
+<small>
+
+- [Stanford Digital Economy Lab – Update Aug. 2026 (via Computing)](https://www.computing.co.uk/news/2026/ai/ai-is-closing-the-door-on-entry-level-jobs-study-finds)
+- [Einordnung inkl. NY-Fed-Kritik (IntuitionLabs)](https://intuitionlabs.ai/pdfs/ai-entry-level-employment-hiring-data.pdf)
+- [PwC AI Jobs Barometer 2026 (via Kelly Services)](https://docs.kellyservices.com/story/need-to-know-briefing-6-22-2026/page/2)
+- [Teutloff et al., JEBO 2025](https://ora.ox.ac.uk/objects/uuid%3Aaf491969-bee7-4b09-a696-2b500b6b21d8)
+- [Salesforce Support-Abbau (TechRadar)](https://techradar.com/pro/salesforce-says-it-cuts-4-000-support-jobs-and-replaced-them-with-ai)
+- [KI-Code-Anteil Google](https://lenz.io/c/us-share-new-code-produced-using-ai-tools-dbe086ac) · [Messung 26,9 %](https://lenz.io/q/percentage-of-code-written-by-ai-2026)
+- [Challenger Mai 2026 (The Hill)](https://thehill.com/policy/technology/5870898-ai-job-cuts-analysis-trump-admin/amp/)
+- [WEF Future of Jobs 2025](https://weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/)
+- [IAB-Kurzbericht 6/2026](https://doku.iab.de/kurzber/2026/kb2026-06.pdf) · [IAB-KI-Szenario (stellenmarkt.de)](https://www.stellenmarkt.de/karrieremagazin/ki-arbeitsmarkt-2027)
+- [Goldman Sachs Szenarien (Fortune)](https://www.fortune.com/2026/01/13/humans-could-go-the-way-of-horses-goldman-ai-job-apocalypse-unemployment)
+
+</small>
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":"1280","height":"720","margin":0.04,"controls":true,"progress":true,"slideNumber":false,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
